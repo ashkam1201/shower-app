@@ -1,23 +1,31 @@
 import { Component, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { ShowerReportService } from '../services/shower-report.service'; // Import the service
 
 @Component({
   selector: 'app-fetch-data',
   templateUrl: './fetch-data.component.html'
 })
 export class FetchDataComponent {
-  public forecasts: WeatherForecast[] = [];
+  public report: ShowerReport[] = [];
 
-  constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
-    http.get<WeatherForecast[]>(baseUrl + 'weatherforecast').subscribe(result => {
-      this.forecasts = result;
+  constructor(
+    private showerReportService: ShowerReportService, // Inject the service
+    http: HttpClient,
+    @Inject('BASE_URL') baseUrl: string
+  ) {
+    // Call the service method to get shower reports
+    this.showerReportService.getShowerReports().subscribe(result => {
+      this.report = result;
     }, error => console.error(error));
   }
 }
 
-interface WeatherForecast {
+ export interface ShowerReport {
+  id: number;
   date: string;
-  temperatureC: number;
-  temperatureF: number;
-  summary: string;
+  hair: boolean;
+  body: boolean;
+  shampoo?: string;
+  showerGel?: string;
 }

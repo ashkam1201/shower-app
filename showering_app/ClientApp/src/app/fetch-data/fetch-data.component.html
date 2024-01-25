@@ -1,24 +1,26 @@
-<h1 id="tableLabel">Weather forecast</h1>
+<h1 id="tableLabel">Shower Report</h1>
 
-<p>This component demonstrates fetching data from the server.</p>
+<p>Look at your last showers</p>
 
-<p *ngIf="!forecasts?.length"><em>Loading...</em></p>
+<p *ngIf="!report?.length"><em>Loading...</em></p>
 
-<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="forecasts.length">
+<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="report.length">
   <thead>
     <tr>
       <th>Date</th>
-      <th>Temp. (C)</th>
-      <th>Temp. (F)</th>
-      <th>Summary</th>
+      <th>Hair washed ?</th>
+      <th>Body washed ?</th>
+      <th>Shampoo used</th>
+      <th>Shower Gel used</th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let forecast of forecasts">
-      <td>{{ forecast.date }}</td>
-      <td>{{ forecast.temperatureC }}</td>
-      <td>{{ forecast.temperatureF }}</td>
-      <td>{{ forecast.summary }}</td>
+    <tr *ngFor="let report of report">
+      <td>{{ report.date }}</td>
+      <td>{{ report.hair }}</td>
+      <td>{{ report.body }}</td>
+      <td>{{ report.shampoo }}</td>
+      <td>{{ report.showerGel }}</td>
     </tr>
   </tbody>
 </table>
