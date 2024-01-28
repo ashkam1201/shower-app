@@ -1,0 +1,32 @@
+.card {
+    padding: 20px;
+}
+
+.card-title {
+    text-align: center;
+}
+
+.container {
+    padding-left: 5%;
+}
+
+.btn {
+    margin-top: 10px;
+    box-shadow: 5px 5px 2px 1px rgba(0, 0, 255, .2);
+    color: #0b3954;
+}
+
+.btn:hover {
+    border: solid 2px #FFFF;
+    color: #FFFF;
+    background-color: #47C2FF;
+}
+
+label {
+    color: #0b3954;
+    font-weight: 600;
+}
+
+.form-group {
+    padding-top: 14px;
+}

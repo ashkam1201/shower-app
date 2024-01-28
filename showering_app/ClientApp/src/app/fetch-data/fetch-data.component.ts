@@ -22,10 +22,10 @@ export class FetchDataComponent {
 }
 
  export interface ShowerReport {
-  id: number;
-  date: string;
+  id: number | null; // Use union type to allow null
+  date: Date| null;
   hair: boolean;
   body: boolean;
-  shampoo?: string;
-  showerGel?: string;
+  shampoo?: string | null;
+  showerGel?: string | null;
 }

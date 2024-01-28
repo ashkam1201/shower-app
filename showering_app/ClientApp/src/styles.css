@@ -1,20 +1,31 @@
-/* You can add global styles to this file, and also import other style files */
+/* Inside src/styles.css or another global stylesheet */
+@font-face {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Poppins Regular'), local('Poppins-Regular'),
+         url('./assets/fonts/Poppins/Poppins-Regular.ttf') format('truetype');
+  }
+  
+  @font-face {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    src: local('Poppins SemiBold'), local('Poppins-SemiBold'),
+         url('./assets/fonts/Poppins/Poppins-SemiBold.ttf') format('truetype');
+  }
 
-/* Provide sufficient contrast against white background */
-a {
-  color: #0366d6;
-}
+  @font-face {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: bold;
+    src: local('Poppins Bold'), local('Poppins-Bold'),
+         url('./assets/fonts/Poppins/Poppins-Bold.ttf') format('truetype');
+  }
+  /* Add more @font-face rules for other weights and styles as needed */
+  
+body {
+    background-color: #47C2FF;
+    font-family: 'Poppins', sans-serif;
 
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
-}
-
-code {
-  color: #e01a76;
-}
-
-.btn-primary {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
 }
