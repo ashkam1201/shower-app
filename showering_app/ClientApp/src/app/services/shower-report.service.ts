@@ -1,30 +1,48 @@
-import { HttpClient } from '@angular/common/http';
-import { Inject, Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ShowerReport } from '../fetch-data/fetch-data.component'; // Import the ShowerReport interface from the appropriate location
+import { environment } from '../../environments/environment';
 
 
-@Injectable({
+
+@Injectable({ 
   providedIn: 'root'
 })
 export class ShowerReportService {
-  constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string) {}
+  private baseUrl: string = environment.apiUrl;
+  private apiUrl = 'https://localhost:7250/api/ShowerReport/'; // Adjust according to your actual API URL
+
+
+  constructor(private http: HttpClient) {}
 
   getShowerReports(): Observable<ShowerReport[]> {
-    return this.http.get<ShowerReport[]>(this.baseUrl + 'ShowerReport');
+    return this.http.get<ShowerReport[]>(this.baseUrl + 'api/ShowerReport/');
   }
 
-  addShowerReport(showerReport: ShowerReport): Observable<ShowerReport> {
-    return this.http.post<ShowerReport>(this.baseUrl + 'ShowerReport', showerReport);
+  addShowerReport(showerReport: ShowerReport): Observable<any> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+    });
+    return this.http.post(this.baseUrl + 'api/ShowerReport/', showerReport, { headers });
   }
+  
   
   
   updateShowerReport(showerReport: ShowerReport): Observable<ShowerReport> {
-    return this.http.put<ShowerReport>(this.baseUrl + 'ShowerReport/' + showerReport.id, showerReport);
+    return this.http.put<ShowerReport>(this.baseUrl + 'api/ShowerReport/' + showerReport, showerReport);
   }
 
   deleteShowerReport(reportId: number): Observable<void> {
-    return this.http.delete<void>(this.baseUrl + 'ShowerReport/' + reportId);
-  }  
+    return this.http.delete<void>(`${this.baseUrl}api/ShowerReport/${reportId}`);
+  }
+  
 
+}
+
+export interface ShowerReport {
+  date: string; // Use string to match the input type
+  hair: boolean;
+  body: boolean;
+  shampoo: string;
+  showerGel: string;
 }

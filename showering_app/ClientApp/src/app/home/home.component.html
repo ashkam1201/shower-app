@@ -2,59 +2,51 @@
   <div class="row">
     <div class="col">
       <div class="card">
-        <div class="card-title"><h3>Enter my last shower :</h3></div>
-          <form (submit)="submitForm()" class="container mt-4">
-            <div class="form-group">
-              <label for="date">Date:</label>
-              <input type="date" id="date" class="form-control" [(ngModel)]="showerReport.date" name="date" required>
-            </div>
+        <div class="card-title text-center">Enter my last shower</div>
+        <form (submit)="submitForm()" class="container mt-4">
+          <div class="form-group">
+            <label for="date">Date:</label>
+            <input type="date" id="date" class="form-control" [(ngModel)]="showerReport.date" name="date" required>
+          </div>
           
-            <div class="form-group">
-              <label>Did I wash my hair?</label>
-              <div class="form-check">
-                <input type="radio" id="hairYes" class="form-check-input" name="hair" [(ngModel)]="showerReport.hair" [value]="true">
-                <label for="hairYes" class="form-check-label">Yes</label>
-              </div>
-              <div class="form-check">
-                <input type="radio" id="hairNo" class="form-check-input" name="hair" [(ngModel)]="showerReport.hair" [value]="false">
-                <label for="hairNo" class="form-check-label">No</label>
-              </div>
+          <div class="form-group">
+            <label>Did I wash my hair?</label>
+            <div class="form-check">
+              <input type="checkbox" id="hair" class="form-check-input" name="hair" [(ngModel)]="showerReport.hair" [value]="showerReport.hair" (change)="!showerReport.hair = showerReport.hair">
+              <label for="hair" class="form-check-label">Yes</label>
             </div>
+          </div>
           
-            <div class="form-group">
-              <label>Did I wash my body?</label>
-              <div class="form-check">
-                <input type="radio" id="bodyYes" class="form-check-input" name="body" [(ngModel)]="showerReport.body" [value]="true">
-                <label for="bodyYes" class="form-check-label">Yes</label>
-              </div>
-              <div class="form-check">
-                <input type="radio" id="bodyNo" class="form-check-input" name="body" [(ngModel)]="showerReport.body" [value]="false">
-                <label for="bodyNo" class="form-check-label">No</label>
-              </div>
+          <div class="form-group">
+            <label>Did I wash my body?</label>
+            <div class="form-check">
+              <input type="checkbox" id="body" class="form-check-input" name="body" [(ngModel)]="showerReport.body" [value]="showerReport.body" (change)="!showerReport.body = showerReport.body">
+              <label for="body" class="form-check-label">Yes</label>
             </div>
+          </div>
           
-            <div class="form-group">
-              <label for="shampoo">Shampoo:</label>
-              <input type="text" id="shampoo" class="form-control" [(ngModel)]="showerReport.shampoo" name="shampoo">
-            </div>
+          <div class="form-group">
+            <label for="shampoo">Shampoo</label>
+            <input type="text" id="shampoo" class="form-control" [(ngModel)]="showerReport.shampoo" name="shampoo">
+          </div>
           
-            <div class="form-group">
-              <label for="showerGel">Shower Gel:</label>
-              <input type="text" id="showerGel" class="form-control" [(ngModel)]="showerReport.showerGel" name="showerGel">
-            </div>
+          <div class="form-group">
+            <label for="showerGel">Shower Gel</label>
+            <input type="text" id="showerGel" class="form-control" [(ngModel)]="showerReport.showerGel" name="showerGel">
+          </div>
           
-            <button type="submit" class="btn btn-light">Submit</button>
-          </form>
+          <button type="submit" class="btn btn-light">Submit</button>
+        </form>
       </div>
     </div>
     <div class="col">
       <div class="card">
-        <div class="card-title"><h3>My Informations :</h3></div>
+        <div class="card-title text-center">My Informations</div>
         <ul class="list-group list-group-flush">
-          <li class="list-group-item">Username :</li>
-          <li class="list-group-item">Birthday :</li>
+          <li class="list-group-item">Username </li>
+          <li class="list-group-item">Birthday </li>
         </ul>
       </div>
     </div>
   </div>
-</div>    
+</div>

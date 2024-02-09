@@ -1,10 +1,11 @@
 import { Component, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { ShowerReportService } from '../services/shower-report.service'; // Import the service
+import { ShowerReportService, ShowerReport } from '../services/shower-report.service'; // Import the service
 
 @Component({
   selector: 'app-fetch-data',
-  templateUrl: './fetch-data.component.html'
+  templateUrl: './fetch-data.component.html',
+  styleUrls: ['./fetch-data.component.css']
 })
 export class FetchDataComponent {
   public report: ShowerReport[] = [];
@@ -19,13 +20,14 @@ export class FetchDataComponent {
       this.report = result;
     }, error => console.error(error));
   }
-}
 
- export interface ShowerReport {
-  id: number | null; // Use union type to allow null
-  date: Date| null;
-  hair: boolean;
-  body: boolean;
-  shampoo?: string | null;
-  showerGel?: string | null;
+  deleteReport(reportId: number, index: number): void {
+    if(confirm("Are you sure to delete this report?")) {
+      this.showerReportService.deleteShowerReport(reportId).subscribe(() => {
+        this.report.splice(index, 1); // Remove the report from the array
+      }, error => {
+        console.error('Error deleting the report:', error);
+      });
+    }
+  }
 }
