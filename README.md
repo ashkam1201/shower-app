@@ -1,6 +1,6 @@
 #SHOWER APP
 
-## This an app for me to train and learn more about Angular and Dotnet Core.
+## This is an app for me to train and learn more about Angular and Dotnet Core.
 
 It's composed of :
 -  A Dotnet Core Api
