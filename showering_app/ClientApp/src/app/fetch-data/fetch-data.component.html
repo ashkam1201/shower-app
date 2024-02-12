@@ -21,6 +21,10 @@
       <td>{{ report.body }}</td>
       <td>{{ report.shampoo }}</td>
       <td>{{ report.showerGel }}</td>
+      <td>
+        <!-- Delete button -->
+        <button  class="btn btn-danger btn-sm" (click)="deleteReport(report.id)">Delete</button>
+      </td>
     </tr>
   </tbody>
 </table>

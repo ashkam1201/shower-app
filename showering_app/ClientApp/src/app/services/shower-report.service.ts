@@ -40,6 +40,7 @@ export class ShowerReportService {
 }
 
 export interface ShowerReport {
+  id?: number;
   date: string; // Use string to match the input type
   hair: boolean;
   body: boolean;

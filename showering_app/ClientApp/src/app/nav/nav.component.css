@@ -2,19 +2,11 @@
   background-color: #FFFFFF;
 }
   
-  html {
-    font-size: 14px;
-  }
-  @media (min-width: 768px) {
-    html {
-      font-size: 16px;
-    }
-  }
-
 .nav-link {
   font-weight: normal;
   color: #0b3954;
   font-family: 'Poppins', sans-serif;
+  margin: 0 10px;
 }
 
 .navbar-brand {

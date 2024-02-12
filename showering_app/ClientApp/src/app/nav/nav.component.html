@@ -1,44 +1,31 @@
 <header>
-    <nav
-      class="navbar navbar-expand-sm navbar-toggleable-sm border-bottom box-shadow mb-3"
-    >
-      <div class="container">
-        <a class="navbar-brand" [routerLink]="['/']">Shower Tracker</a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-toggle="collapse"
-          data-target=".navbar-collapse"
-          aria-label="Toggle navigation"
-          [attr.aria-expanded]="isExpanded"
-          (click)="toggle()"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div
-          class="navbar-collapse collapse d-sm-inline-flex justify-content-end"
-          [ngClass]="{ show: isExpanded }"
-        >
-          <ul class="navbar-nav flex-grow">
-            <li
-              class="nav-item"
-              [routerLinkActive]="['link-active']"
-              [routerLinkActiveOptions]="{ exact: true }"
-            >
-              <a class="nav-link" [routerLink]="['/']" >Home</a>
+  <nav class="navbar navbar-expand-sm navbar-toggleable-sm border-bottom box-shadow mb-3">
+    <div class="container">
+      <a class="navbar-brand" [routerLink]="['/']">Shower Tracker</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-label="Toggle navigation" [attr.aria-expanded]="isExpanded" (click)="toggle()">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="navbar-collapse collapse d-sm-inline-flex justify-content-end" [ngClass]="{ show: isExpanded }">
+        <ul class="navbar-nav flex-grow">
+          <ng-container *ngIf="isLoggedIn$ | async">
+            <li class="nav-item">
+              <button class="btn btn-link nav-link" (click)="navigate('/')">Home</button>
             </li>
-            <li class="nav-item" [routerLinkActive]="['link-active']">
-              <a class="nav-link" [routerLink]="['/counter']"
-                >Counter</a
-              >
+            <li class="nav-item">
+              <button class="btn btn-link nav-link" (click)="navigate('/counter')">Counter</button>
             </li>
-            <li class="nav-item" [routerLinkActive]="['link-active']">
-              <a class="nav-link" [routerLink]="['/fetch-data']"
-                >Last Showers</a
-              >
+            <li class="nav-item">
+              <button class="btn btn-link nav-link" (click)="navigate('/fetch-data')">Last Showers</button>
             </li>
-          </ul>
-        </div>
+            <li class="nav-item">
+              <button class="btn btn-primary" (click)="logout()">Logout</button>
+            </li>
+          </ng-container>
+          <li class="nav-item" *ngIf="!(isLoggedIn$ | async)">
+            <button class="btn btn-primary" (click)="navigate('/login')">Login</button>
+          </li>
+        </ul>
       </div>
-    </nav>
-  </header>
+    </div>
+  </nav>
+</header>

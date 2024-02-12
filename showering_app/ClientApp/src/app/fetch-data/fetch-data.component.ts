@@ -21,12 +21,19 @@ export class FetchDataComponent {
     }, error => console.error(error));
   }
 
-  deleteReport(reportId: number, index: number): void {
+  deleteReport(reportId?: number) {
+    if (typeof reportId === 'undefined') {
+      console.error('Report ID is undefined.');
+      return;
+    }
     if(confirm("Are you sure to delete this report?")) {
       this.showerReportService.deleteShowerReport(reportId).subscribe(() => {
-        this.report.splice(index, 1); // Remove the report from the array
+        // On successful deletion, remove the report from the report array
+        this.report = this.report.filter(report => report.id !== reportId);
+        console.log(`Report with ID ${reportId} deleted successfully.`);
       }, error => {
         console.error('Error deleting the report:', error);
+        // Handle any errors here, such as showing an alert to the user
       });
     }
   }
