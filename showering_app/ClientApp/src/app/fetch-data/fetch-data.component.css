@@ -15,3 +15,38 @@
     color: #0b3954;
     font-family: 'Poppins', sans-serif;
 }
+
+@media (max-width: 768px) {
+    /* Hide table headers and other columns on mobile */
+    .table thead, .hide-on-mobile {
+        display: none;
+    }
+
+    .table tbody, .table tr, .table td {
+        display: block;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    /* Style the table rows to look like cards with some spacing */
+    .table tr {
+        margin-bottom: 0.75rem;
+        padding: 0.5rem;
+        border: 1px solid #ddd;
+    }
+
+    /* Ensure content in td elements is left-aligned */
+    .table td {
+        text-align: left;
+        /* If you want to keep the delete button, uncomment the below line and adjust as needed */
+        /* padding: 0.5rem; */
+    }
+
+    /* Align the delete button to the right and make it full-width for easier touch */
+    .table td .btn {
+        display: block;
+        width: 100%;
+        text-align: center;
+        margin-top: 0.5rem;
+    }
+}

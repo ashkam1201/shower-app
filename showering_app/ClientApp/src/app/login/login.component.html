@@ -11,5 +11,9 @@
       </div>
       <button type="submit" class="btn btn-primary">Login</button>
     </form>
+    <!-- Display Error Message -->
+    <div *ngIf="loginError" class="alert alert-danger" role="alert">
+      {{ loginError }}
+    </div>
   </div>
   
