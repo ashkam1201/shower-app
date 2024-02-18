@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using showering_app.DTO;
 
 [Route("api/[controller]")]
 [ApiController]
@@ -39,15 +40,36 @@ public class ShowerReportController : ControllerBase
         return showerReport;
     }
 
-    // POST: api/ShowerReport
     [HttpPost]
-    public async Task<ActionResult<ShowerReport>> PostShowerReport(ShowerReport showerReport)
+    public async Task<ActionResult<ShowerReport>> PostShowerReport(ShowerReportDto showerReportDto)
     {
+        if (!ModelState.IsValid)
+        {
+            return BadRequest(ModelState);
+        }
+
+        if (!DateTime.TryParse(showerReportDto.Date, out var parsedDate))
+        {
+            ModelState.AddModelError("Date", "Invalid date format.");
+            return BadRequest(ModelState);
+        }
+
+        var showerReport = new ShowerReport
+        {
+            Date = parsedDate,
+            Hair = showerReportDto.Hair,
+            Body = showerReportDto.Body,
+            Shampoo = showerReportDto.Shampoo,
+            ShowerGel = showerReportDto.ShowerGel
+        };
+
         _context.ShowerReports.Add(showerReport);
         await _context.SaveChangesAsync();
 
         return CreatedAtAction(nameof(GetShowerReport), new { id = showerReport.Id }, showerReport);
     }
+
+
 
     // PUT: api/ShowerReport/5
     [HttpPut("{id}")]
