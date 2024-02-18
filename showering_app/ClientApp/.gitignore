@@ -4,7 +4,7 @@
 .angular/cache/
 
 # compiled output
-/dist
+/distx
 /dist-server
 /tmp
 /out-tsc
