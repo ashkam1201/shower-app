@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthService } from '../services/auth.service'; // Ensure the path is updated to the correct one
 import { ShowerReportService, ShowerReport } from '../services/shower-report.service';
 
 @Component({
@@ -9,12 +10,14 @@ import { ShowerReportService, ShowerReport } from '../services/shower-report.ser
 export class HomeComponent {
   showerReport: ShowerReport = this.getInitialShowerReport();
 
-  constructor(private showerReportService: ShowerReportService) {}
+  constructor(
+    private showerReportService: ShowerReportService,
+    public authService: AuthService // Added to inject the AuthService
+  ) {}
 
   getInitialShowerReport(): ShowerReport {
-    // Having a method to initialize the form helps to reset it after submission or on initialization
     return {
-      date: '', // Use empty string for the initial value to avoid null checks
+      date: '',
       hair: false,
       body: false,
       shampoo: '',
@@ -23,18 +26,10 @@ export class HomeComponent {
   }
 
   submitForm(): void {
-    // Check if the date is valid
-    const dateValue = this.showerReport.date ? new Date(this.showerReport.date) : null;
-  
-    if (dateValue && !isNaN(dateValue.getTime())) {
-      // Format the date to the expected format by your backend
-      const formattedDate = `${dateValue.getFullYear()}-${(dateValue.getMonth() + 1).toString().padStart(2, '0')}-${dateValue.getDate().toString().padStart(2, '0')}T00:00:00`;
-      console.log(formattedDate);
-  
-      // Construct the object with the formatted date string
+    if (this.isValidShowerReport(this.showerReport)) {
       const showerReportToSend: ShowerReport = {
         ...this.showerReport,
-        date: formattedDate
+        date: this.formatDate(this.showerReport.date)
       };
       console.log(showerReportToSend);
       this.showerReportService.addShowerReport(showerReportToSend).subscribe(
@@ -50,21 +45,19 @@ export class HomeComponent {
       console.error('Form is not valid.');
     }
   }
-  
-  
-  
-  
+
   private isValidShowerReport(showerReport: ShowerReport): boolean {
-    // Perform validation, e.g., checking if the date is a valid date string
-    // Here we try to parse the date and check if the result is not an Invalid Date
     const date = new Date(showerReport.date);
     return !isNaN(date.getTime());
   }
-  
-  
+
+  private formatDate(dateString: string): string {
+    const date = new Date(dateString); // Assuming dateString is the input for your formatDate
+    return `${date.getFullYear()}-${(date.getMonth() + 1).toString().padStart(2, '0')}-${date.getDate().toString().padStart(2, '0')}T00:00:00`;
+  }  
+
   private resetForm(): void {
     this.showerReport = this.getInitialShowerReport();
     // Additional logic to reset any UI state or form controls if necessary
   }
-  
 }

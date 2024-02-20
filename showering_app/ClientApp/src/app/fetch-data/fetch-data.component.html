@@ -1,7 +1,10 @@
+<h1>Total Shower reports</h1>
+
 <div class="table-responsive">
-  <table class='table table-striped' aria-labelledby="tableLabel" *ngIf="report.length">
+  <div class="card">
+    <table class='table table-striped' aria-labelledby="tableLabel" *ngIf="report.length">
     <thead>
-      <tr>
+      <tr class="table-header">
         <th>Date</th>
         <th class="hide-on-mobile">Hair washed ?</th>
         <th class="hide-on-mobile">Body washed ?</th>
@@ -24,4 +27,6 @@
       </tr>
   </tbody>
   </table>
+  </div>
+  
 </div>

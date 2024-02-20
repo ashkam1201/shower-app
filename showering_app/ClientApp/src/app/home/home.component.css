@@ -33,4 +33,10 @@ label {
     padding-top: 14px;
 }
 
-/**/
+@media (max-width: 767px) {
+    /* Ensure the form control is not wider than the screen */
+    .form-control[type="date"] {
+      max-width: 100%;
+      box-sizing: border-box; /* Makes sure padding and border are included in the width */
+    }
+}

@@ -1,8 +1,23 @@
+h1 {
+    color: #0b3954  ;
+    font-size: 32px;
+    font-weight: bold;
+    font-family: 'Poppins', sans-serif;
+}
+
+.card {
+    padding: 10px;
+}
 .table {
+    border: solid #0b3954;
     background-color: white;
 }
 
-.table-label{
+.table-header {
+    background-color: #0b3954;
+    color: white;
+}
+.table-label {
     font-size: 24px;
     font-weight: bold;
     color: #0b3954;

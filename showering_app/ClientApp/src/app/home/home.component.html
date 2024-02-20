@@ -41,11 +41,9 @@
     </div>
     <div class="col">
       <div class="card">
-        <div class="card-title text-center">My Informations</div>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item">Username </li>
-          <li class="list-group-item">Birthday </li>
-        </ul>
+        <div *ngIf="authService.user$ | async as user">
+          <h4>Welcome {{ user.displayName || user.email }}</h4>
+        </div>
       </div>
     </div>
   </div>
